@@ -18,6 +18,7 @@ gallery.forEach(
       src="${galleryItem.preview}"
       data-source="${galleryItem.original}"
       alt="${galleryItem.description}"
+      data-index = '${index}'
     />
   </a>
 </li>
@@ -30,6 +31,7 @@ const lightboxElem = document.querySelector(".js-lightbox")
 const lightboxImage = document.querySelector(".lightbox__image")
 const closeIcon = document.querySelector(".lightbox__button")
 const overlay = document.querySelector(".lightbox__overlay")
+const content = document.querySelector(".lightbox__content")
 
 const openLightbox = function (event) {
   event.preventDefault()
@@ -58,21 +60,16 @@ window.addEventListener("keydown", function (event) {
 })
 
 //? не работает Закрытие модального окна по клику на div.lightbox__overlay.
-console.log(overlay)
+
 overlay.addEventListener("click", (event) => {
-  console.log(event.tagName)
+  if (event.target.nodeName === "IMG") return;
+  else {
+    closeLightbox()
+  }
 })
 
 // Пролистывание изображений галереи в открытом модальном окне клавишами "влево" и "вправо".
 
-//* just some ideas on logic on gallery scroll
-// const scrollRight = function (event) {
-//   for (
-
-//     currentSlideIndex < gallery.length;
-//     currentSlideIndex++
-//   ) {}
-// };
 // const scrollLeft = function (event) {
 //   for (
 
@@ -80,6 +77,23 @@ overlay.addEventListener("click", (event) => {
 //     currentSlideIndex--
 //   ) {}
 // };
-
-// window.addEventListener(keydown, scrollRight);
-// window.addEventListener(keydown, scrollLeft);
+const scrollRight = function () {
+  if (event.key === "ArrorLeft") {
+    imgIndex--
+    if (imgIndex <= 0) {
+      imgIndex = galery.length - 1
+      lightboxImage.src = galery[index].src
+    }
+  }
+  
+  const scrollRight = function () {
+    if (event.key === "ArrorRight") {
+    imgIndex--
+    if (imgIndex > 0) {
+      imgIndex = galery.length + 1
+      lightboxImage.src = galery[index].src
+    }
+  }
+}
+window.addEventListener(keydown, scrollRight)
+window.addEventListener(keydown, scrollLeft)
