@@ -62,7 +62,7 @@ window.addEventListener("keydown", function (event) {
 //? не работает Закрытие модального окна по клику на div.lightbox__overlay.
 
 overlay.addEventListener("click", (event) => {
-  if (event.target.nodeName === "IMG") return;
+  if (event.target.nodeName === "IMG") return
   else {
     closeLightbox()
   }
@@ -77,7 +77,7 @@ overlay.addEventListener("click", (event) => {
 //     currentSlideIndex--
 //   ) {}
 // };
-const scrollRight = function () {
+const scrollLeft = function () {
   if (event.key === "ArrorLeft") {
     imgIndex--
     if (imgIndex <= 0) {
@@ -85,13 +85,14 @@ const scrollRight = function () {
       lightboxImage.src = galery[index].src
     }
   }
-  
+
   const scrollRight = function () {
     if (event.key === "ArrorRight") {
-    imgIndex--
-    if (imgIndex > 0) {
-      imgIndex = galery.length + 1
-      lightboxImage.src = galery[index].src
+      imgIndex--
+      if (imgIndex > 0) {
+        imgIndex = galery.length + 1
+        lightboxImage.src = galery[index].src
+      }
     }
   }
 }
